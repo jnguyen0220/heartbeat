@@ -1,0 +1,7 @@
+{
+    "version": 2,
+    "name": "heartbeat",
+    "routes": [
+       { "src": "/(.*)", "dest": "./server/index.js" }
+    ]
+ }

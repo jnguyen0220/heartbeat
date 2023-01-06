@@ -1,11 +1,11 @@
 <script lang="ts">
-	import { io } from 'socket.io-client';
 	import { onMount } from 'svelte';
 	import { Grid, type GridReadyEvent } from 'ag-grid-community';
 	import TopAppBar from '@smui/top-app-bar';
 	import { Row, Section, Title } from '@smui/top-app-bar';
 	import IconButton, { Icon } from '@smui/icon-button';
 	import Button, { Label } from '@smui/button';
+	import { io } from 'socket.io-client';
 
 	let gridContainer: any = null;
 	let grid: any = null;
@@ -16,7 +16,7 @@
 		const { gridOptions: gridOp } = grid;
 		gridOp.api.applyTransaction({ add: message });
 	});
-	socket.on('update', (message) => {
+	socket.on('update', (message: any) => {
 		const { gridOptions: gridOp } = grid;
 		const rowNode = gridOp.api.getRowNode(message.name);
 		gridOp.api.applyTransaction({ update: [{ ...rowNode.data, ...message }] });
@@ -27,7 +27,8 @@
 		{ field: 'interval' },
 		{ field: 'address' },
 		{ field: 'timestamp', cellRenderer: 'agAnimateShowChangeCellRenderer' },
-		{ field: 'uptime' }
+		{ field: 'uptime' },
+		{ field: 'lastStatusChange' }
 	];
 
 	const onGridReady = ({ api }: GridReadyEvent) => {

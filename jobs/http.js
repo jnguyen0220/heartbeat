@@ -1,9 +1,9 @@
-import  {parentPort, workerData} from  "worker_threads";
-import got from "got"
+import { parentPort, workerData } from 'worker_threads';
+import got from 'got';
 
 const { worker } = workerData.job;
 const {
-  workerData: { url },
+	workerData: { url }
 } = worker;
 
 const result = { url, ok: false };

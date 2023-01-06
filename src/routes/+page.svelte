@@ -4,7 +4,8 @@
 	import { Grid, type GridReadyEvent } from 'ag-grid-community';
 	import TopAppBar from '@smui/top-app-bar';
 	import { Row, Section, Title } from '@smui/top-app-bar';
-	import IconButton from '@smui/icon-button';
+	import IconButton, { Icon } from '@smui/icon-button';
+	import Button, { Label } from '@smui/button';
 
 	let gridContainer: any = null;
 	let grid: any = null;
@@ -25,7 +26,8 @@
 		{ field: 'name' },
 		{ field: 'interval' },
 		{ field: 'address' },
-		{ field: 'timestamp', cellRenderer: 'agAnimateShowChangeCellRenderer' }
+		{ field: 'timestamp', cellRenderer: 'agAnimateShowChangeCellRenderer' },
+		{ field: 'uptime' }
 	];
 
 	const onGridReady = ({ api }: GridReadyEvent) => {
@@ -51,50 +53,44 @@
 		href="https://unpkg.com/ag-grid-community/dist/styles/ag-theme-alpine.css"
 	/>
 </svelte:head>
-<div class="flexy">
-	<div class="top-app-bar-container flexor">
-		<TopAppBar variant="static" color="primary">
-			<Row>
-				<Section>
-					<IconButton class="material-icons">menu</IconButton>
-					<Title>AM I ALIVE</Title>
-				</Section>
-			</Row>
-		</TopAppBar>
-		<TopAppBar variant="static" color="secondary" dense>
-			<Row class="tool">
-				<Section align="start" toolbar>
-					<IconButton class="material-icons" aria-label="Download">file_download</IconButton>
-					<IconButton class="material-icons" aria-label="Print this page">print</IconButton>
-					<IconButton class="material-icons" aria-label="Bookmark this page">bookmark</IconButton>
-				</Section>
-			</Row>
-		</TopAppBar>
+<div class="container">
+	<TopAppBar variant="static" color="primary">
+		<Row>
+			<Section>
+				<IconButton class="material-icons">menu</IconButton>
+				<Title>AM I ALIVE</Title>
+			</Section>
+		</Row>
+	</TopAppBar>
+	<TopAppBar variant="static" color="secondary" dense>
+		<Row class="tool">
+			<Section align="start" toolbar>
+				<Button>
+					<Icon class="material-icons">add</Icon>
+					<Label>Add</Label>
+				</Button>
+			</Section>
+		</Row>
+	</TopAppBar>
+	<div class="main">
 		<div
 			id="datagrid"
 			class="ag-theme-alpine"
-			style="height: 100%; width:100%"
+			style="height: 100%; width:100%;"
 			bind:this={gridContainer}
 		/>
 	</div>
 </div>
 
 <style>
-	.top-app-bar-container {
-		width: 100%;
-		height: 320px;
-		border: 1px solid var(--mdc-theme-text-hint-on-background, rgba(0, 0, 0, 0.1));
-		margin: 0 18px 18px 0;
-		background-color: var(--mdc-theme-background, #fff);
-		overflow: auto;
-		display: inline-block;
+	.main {
+		height: 100%;
+		/* align-self: stretch; */
 	}
-	.flexor {
-		display: inline-flex;
-		flex-direction: column;
-	}
-	.flexy {
-		display: flex;
-		flex-wrap: wrap;
+	.container {
+		min-height: 100vh;
+		display: grid;
+		align-items: stretch;
+		grid-template-rows: min-content min-content auto;
 	}
 </style>

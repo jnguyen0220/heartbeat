@@ -8,7 +8,7 @@ const {
 
 const result = { url, ok: false };
 
-got(url, { timeout: { request: 1000 } })
+got(url, { timeout: { request: 2000 } })
   .then((res) => {
     result.ok = res.statusCode === 200;
   }).catch(err => {}).finally(() => {

@@ -15,13 +15,6 @@
 		"port": 443
 	  },
 	  {
-		"address": "https://blue1.com",
-		"name": "https://blue1.com",
-		"path": "./jobs/http.js",
-		"interval": "every 25 seconds",
-		"port": 443
-	  },
-	  {
 		"address": "8.8.8.8",
 		"name": "Google DNS",
 		"path": "./jobs/ping.js",

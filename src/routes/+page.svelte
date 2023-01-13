@@ -14,7 +14,7 @@
 	socket.on('welcome', (message: any[]) => {
 		console.log(message);
 		const { gridOptions: gridOp } = grid;
-		gridOp.api.applyTransaction({ add: message });
+		!gridOp.api.getDisplayedRowCount() && gridOp.api.applyTransaction({ add: message });
 	});
 	socket.on('update', (message: any) => {
 		const { gridOptions: gridOp } = grid;
